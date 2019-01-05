@@ -1,0 +1,12 @@
+rule "last update"
+when
+    Member of grpHTSensors received update
+then
+    logInfo("VSHOME", "The item " + triggeringItem.name + " received update ")
+    // Alexa_RZ_TTS.sendCommand("The item " + triggeringItem.name + " received update ")
+    val lastUpdateItem = grpLoggedDLC.members.findFirst[ lu | lu.name == triggeringItem.name + "_LastUpdate" ]
+    if ( lastUpdateItem !==  null) {
+      lastUpdateItem.postUpdate(new DateTimeType())
+      logInfo("VSHOME", "The item " + lastUpdateItem.name + " pinged")    
+    }
+end

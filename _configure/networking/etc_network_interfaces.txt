@@ -1,0 +1,21 @@
+
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+# The primary network interface - supress ip
+auto eth0
+iface eth0 inet manual
+
+auto br0
+
+iface br0 inet static
+
+address 192.168.2.222
+    netmask 255.255.255.0
+    broadcast 192.168.2.0
+    gateway 192.168.2.1
+    dns-nameservers 8.8.8.8 
+    bridge_ports eth0
+    bridge_stp off
+    bridge_fd 0
+    bridge_maxwait 0

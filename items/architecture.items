@@ -1,0 +1,12 @@
+// Overarching group
+Group Kingdom
+
+// Location perspective
+Group Location_Local (Kingdom)
+Group Location_Remote (Kingdom)
+
+// Functional perspective
+Group Sensors      (Kingdom)
+Group grpHTSensors (Sensors)
+
+Group grpLoggedDLC (Sensors)
