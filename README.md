@@ -16,6 +16,14 @@ combining local ethernet (eth0) together with VPN interface (tap0)
 
 ## Openhab Server - Bridge Networking 
 
+Note, in some systems, like Raspbian necessary package might not be installed. Check additionally.
+
+```sh
+
+sudo apt-get install -y bridge-utils
+
+```
+
 `/etc/network/interfaces`
 
 ```conf
@@ -102,3 +110,10 @@ with set of deployment batches, that provision openhab server with updates. All 
 Additionally, ansible plays are used for initial box configuration (zsh shell, docker daemon, prometheus exporters, openvpn configuration and so on)
 
 This allows me
+
+## Remote site - OpenVPN server
+
+Ideally, you might have router that already supports L2 OpenVPN. Routers supporting custom firmwares (Padawan, Openwrt, Tomato - for sure), Microtics and so on.
+
+If for any reason you don't have such router, this means you would need to place one more box on remote site (possible - the same raspberry pi) and install OpenVPN there.
+
