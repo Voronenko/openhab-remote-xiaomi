@@ -89,6 +89,45 @@ verb 3
 
 # Silence repeating messages
 ;mute 20
+
+script-security 2
+
+up /etc/openvpn/up.sh
+down /etc/openvpn/down.sh
+
+```
+
+up.sh
+```sh
+
+#!/bin/sh
+
+# tap0 | 1500 | 1573 | 192.168.1.246 | 255.255.255.0 | init
+echo "$1 | $2 | $3 | $4 | $5 | $6"
+
+
+if ip link show tap0 | grep "master br0" ; then
+    echo "Tap0 is already part of the bridge, skipping"
+else
+    echo "Adding Tap0 to bridge"
+    ifconfig $1 0.0.0.0 promisc up
+    ip link set tap0 master br0
+fi
+
+```
+
+down.sh
+```
+
+#!/bin/sh
+
+if ip link show tap0 | grep "master br0" ; then
+    echo "Unbinding interface from bridge"
+    ip link set tap0 nomaster || true
+else
+    echo "Tap0 is not part of the bridge"
+fi
+
 ```
 
 ## Openhab Server - Validating setup
