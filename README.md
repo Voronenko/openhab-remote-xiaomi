@@ -156,3 +156,13 @@ Ideally, you might have router that already supports L2 OpenVPN. Routers support
 
 If for any reason you don't have such router, this means you would need to place one more box on remote site (possible - the same raspberry pi) and install OpenVPN there.
 
+## Tips and tricks
+
+Design patterns
+
+https://community.openhab.org/tags/designpattern
+
+VS Code extension
+
+https://github.com/openhab/openhab-vscode
+
