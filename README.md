@@ -166,3 +166,6 @@ VS Code extension
 
 https://github.com/openhab/openhab-vscode
 
+OpenVPN configs generator by SparkLabs
+
+https://github.com/thesparklabs/openvpn-configuration-generator
