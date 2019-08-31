@@ -1,0 +1,28 @@
+#!/bin/sh
+
+#wait for the openvpn to connect for the first time
+sleep 120
+
+while [ true ]; do
+
+#check if openvpn is enabled, if not, go to next loop
+vpn_enabled=$(uci get glconfig.openvpn.enable)
+if [ "$vpn_enabled" != "1" ]; then
+	echo "VPN not enabled, check 20 seconds later"
+	sleep 20
+	continue
+fi
+
+vpn_pid=$(pidof openvpn)
+tun0_ifname=$(ifconfig tun0)
+
+if [ -z "$tun0_ifname" ] && [ -z "$vpn_pid" ]; then
+	echo "VPN enabled but not running, restarting it"
+    /etc/init.d/startvpn restart
+else
+	echo "VPN is connected and connecting, check 20 seconds later"
+fi
+
+sleep 20
+
+done
