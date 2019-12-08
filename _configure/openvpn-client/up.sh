@@ -10,5 +10,7 @@ else
     echo "Adding Tap0 to bridge"
     ifconfig $1 $4 promisc up
     ip link set tap0 master br0
+    ip addr add $OBTAINED_IP/32 dev br0
+    ip route add 192.168.1.0/24 via $OBTAINED_IP dev br0    
 fi
 
